@@ -1,9 +1,9 @@
-package com.kieronquinn.app.simnumbersetter
+package app.arifnurrohim.simsetter
 
 import android.app.Application
-import com.kieronquinn.app.simnumbersetter.repositories.*
-import com.kieronquinn.app.simnumbersetter.ui.screens.main.MainViewModel
-import com.kieronquinn.app.simnumbersetter.ui.screens.main.MainViewModelImpl
+import app.arifnurrohim.simsetter.repositories.*
+import app.arifnurrohim.simsetter.ui.screens.main.MainViewModel
+import app.arifnurrohim.simsetter.ui.screens.main.MainViewModelImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin

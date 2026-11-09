@@ -1,9 +1,9 @@
-package com.kieronquinn.app.simnumbersetter.utils.extensions
+package app.arifnurrohim.simsetter.utils.extensions
 
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import com.kieronquinn.app.simnumbersetter.BuildConfig
+import app.arifnurrohim.simsetter.BuildConfig
 
 private const val KEY_PENDING_INTENT = "SECURITY_PENDING_INTENT"
 private const val PENDING_INTENT_REQUEST_CODE = 1001

@@ -1,9 +1,9 @@
-package com.kieronquinn.app.simnumbersetter.ui.activities
+package app.arifnurrohim.simsetter.ui.activities
 
 import android.os.Bundle
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
-import com.kieronquinn.app.simnumbersetter.R
+import app.arifnurrohim.simsetter.R
 import com.kieronquinn.monetcompat.app.MonetCompatActivity
 import com.kieronquinn.monetcompat.core.MonetCompat
 

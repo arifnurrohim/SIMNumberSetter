@@ -1,26 +1,25 @@
-package com.kieronquinn.app.simnumbersetter.ui.screens.main
+package app.arifnurrohim.simsetter.ui.screens.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.core.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.kieronquinn.app.simnumbersetter.R
-import com.kieronquinn.app.simnumbersetter.databinding.FragmentMainBinding
-import com.kieronquinn.app.simnumbersetter.ui.screens.main.MainViewModel.*
-import com.kieronquinn.app.simnumbersetter.utils.extensions.hideIme
-import com.kieronquinn.app.simnumbersetter.utils.extensions.onChanged
-import com.kieronquinn.app.simnumbersetter.utils.extensions.onClicked
+import app.arifnurrohim.simsetter.R
+import app.arifnurrohim.simsetter.databinding.FragmentMainBinding
+import app.arifnurrohim.simsetter.ui.screens.main.MainViewModel.*
+import app.arifnurrohim.simsetter.utils.extensions.hideIme
+import app.arifnurrohim.simsetter.utils.extensions.onChanged
+import app.arifnurrohim.simsetter.utils.extensions.onClicked
 import com.kieronquinn.monetcompat.app.MonetFragment
 import com.kieronquinn.monetcompat.core.MonetCompat
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.take
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.NullPointerException
 
@@ -53,11 +52,11 @@ class MainFragment: Fragment() {
         setupInsets()
         setupState()
         setupToolbar()
-        setupNumber()
         setupMonet()
         setupSaveButton()
         setupCloseButton()
         setupInput()
+        setupSimSelector()
     }
 
     private fun setupInsets() {
@@ -124,6 +123,14 @@ class MainFragment: Fragment() {
         }
     }
 
+    private fun setupSimSelector() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        with(binding.includeMainLoaded.includeMainLoadedCardEdit.mainLoadedCardEditSim) {
+            setOnItemClickListener { _, _, position, _ ->
+                viewModel.onPhoneSelected(position)
+            }
+        }
+    }
+
     private fun setupState() {
         handleState(viewModel.state.value)
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
@@ -140,24 +147,8 @@ class MainFragment: Fragment() {
         when(state) {
             is State.Loading -> setupWithLoading(state.loadType)
             is State.Error -> setupWithError(state.errorType)
-            is State.Loaded -> setupWithLoaded(state.number)
+            is State.Loaded -> setupWithLoaded(state)
         }
-    }
-
-    private fun setupNumber() {
-        viewModel.number.value?.let {
-            handleNumber(it)
-        } ?: run {
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-                viewModel.number.filterNotNull().take(1).collect {
-                    handleNumber(it)
-                }
-            }
-        }
-    }
-
-    private fun handleNumber(number: String) = with(binding.includeMainLoaded.includeMainLoadedCardEdit) {
-        mainLoadedCardEditEdit.setText(number, TextView.BufferType.EDITABLE)
     }
 
     private fun setupWithLoading(loadType: LoadType) = with(binding.includeMainLoading) {
@@ -168,12 +159,30 @@ class MainFragment: Fragment() {
         mainErrorContent.setText(errorType.messageRes)
     }
 
-    private fun setupWithLoaded(number: String) = with(binding.includeMainLoaded) {
-        val formattedNumber = number.ifEmpty {
+    private fun setupWithLoaded(state: State.Loaded) = with(binding.includeMainLoaded) {
+        val formattedNumber = state.number.ifEmpty {
             getString(R.string.main_loaded_card_edit_number_empty)
         }
         includeMainLoadedCardEdit.mainLoadedCardEditCurrent.text =
             getString(R.string.main_loaded_card_edit_content, formattedNumber)
+        includeMainLoadedCardEdit.mainLoadedCardEditEdit.setText(
+            state.number,
+            TextView.BufferType.EDITABLE
+        )
+        setupSimSelector(state.phoneId, state.phoneCount)
     }
+
+    private fun setupSimSelector(phoneId: Int, phoneCount: Int) =
+        with(binding.includeMainLoaded.includeMainLoadedCardEdit) {
+            mainLoadedCardEditSimInput.isVisible = phoneCount > 1
+            if (phoneCount <= 1) return@with
+            val labels = (1..phoneCount).map {
+                getString(R.string.main_loaded_card_edit_sim_item, it)
+            }
+            mainLoadedCardEditSim.setAdapter(
+                ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, labels)
+            )
+            mainLoadedCardEditSim.setText(labels[phoneId], false)
+        }
 
 }

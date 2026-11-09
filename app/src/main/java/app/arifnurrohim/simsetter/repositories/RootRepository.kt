@@ -1,4 +1,4 @@
-package com.kieronquinn.app.simnumbersetter.repositories
+package app.arifnurrohim.simsetter.repositories
 
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers

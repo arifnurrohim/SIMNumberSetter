@@ -19,6 +19,23 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large.SNS"
             android:textColor="?android:textColorPrimary" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/main_loaded_card_edit_sim_input"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16"
+            android:hint="@string/main_loaded_card_edit_sim_hint">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/main_loaded_card_edit_sim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/google_sans_text_medium"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:id="@+id/main_loaded_card_edit_current"
             android:layout_width="match_parent"

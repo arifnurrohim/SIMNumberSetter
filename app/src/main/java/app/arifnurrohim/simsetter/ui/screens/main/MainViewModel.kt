@@ -1,4 +1,4 @@
-package com.kieronquinn.app.simnumbersetter.ui.screens.main
+package app.arifnurrohim.simsetter.ui.screens.main
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -7,10 +7,10 @@ import android.net.Uri
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kieronquinn.app.simnumbersetter.R
-import com.kieronquinn.app.simnumbersetter.repositories.PermissionRepository
-import com.kieronquinn.app.simnumbersetter.repositories.RootRepository
-import com.kieronquinn.app.simnumbersetter.repositories.ServiceRepository
+import app.arifnurrohim.simsetter.R
+import app.arifnurrohim.simsetter.repositories.PermissionRepository
+import app.arifnurrohim.simsetter.repositories.RootRepository
+import app.arifnurrohim.simsetter.repositories.ServiceRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -21,12 +21,17 @@ abstract class MainViewModel : ViewModel() {
     abstract val state: StateFlow<State>
     abstract val number: StateFlow<String?>
     abstract fun onNumberChanged(newNumber: String)
+    abstract fun onPhoneSelected(phoneId: Int)
     abstract fun onSaveClicked()
     abstract fun onMenuItemClicked(context: Context, id: Int)
 
     sealed class State {
         data class Loading(val loadType: LoadType) : State()
-        data class Loaded(internal val number: String) : State()
+        data class Loaded(
+            internal val number: String,
+            val phoneId: Int,
+            val phoneCount: Int
+        ) : State()
         data class Error(val errorType: ErrorType) : State()
     }
 
@@ -34,6 +39,7 @@ abstract class MainViewModel : ViewModel() {
         NO_ROOT(R.string.error_no_root),
         NO_PERMISSION(R.string.error_no_permission),
         NO_XPOSED(R.string.error_no_xposed),
+        NO_SIM(R.string.error_no_sim),
         SAVE_FAILED(R.string.error_save_failed)
     }
 
@@ -51,11 +57,12 @@ class MainViewModelImpl(
 ) : MainViewModel() {
 
     companion object {
-        private const val URL_GITHUB = "https://kieronquinn.co.uk/redirect/SNS/github"
+        private const val URL_GITHUB = "https://github.com/KieronQuinn/SIMNumberSetter"
         private const val URL_DONATE = "https://kieronquinn.co.uk/redirect/SNS/donate"
     }
 
     private val customNumber = MutableStateFlow<String?>(null)
+    private val selectedPhoneId = MutableStateFlow(0)
 
     override val state = MutableStateFlow<State>(State.Loading(LoadType.LOADING))
     override val number = combine(customNumber, state) { n, s ->
@@ -69,6 +76,15 @@ class MainViewModelImpl(
     override fun onNumberChanged(newNumber: String) {
         viewModelScope.launch {
             customNumber.emit(newNumber)
+        }
+    }
+
+    override fun onPhoneSelected(phoneId: Int) {
+        if (selectedPhoneId.value == phoneId) return
+        viewModelScope.launch {
+            selectedPhoneId.emit(phoneId)
+            customNumber.emit(null)
+            load()
         }
     }
 
@@ -101,9 +117,9 @@ class MainViewModelImpl(
             state.emit(State.Error(ErrorType.NO_PERMISSION))
             return@launch
         }
-        val number = try {
+        val phoneCount = try {
             serviceRepository.runWithService {
-                it.line1Number
+                it.phoneCount
             }
         } catch (e: Exception) {
             null
@@ -111,14 +127,31 @@ class MainViewModelImpl(
             state.emit(State.Error(ErrorType.NO_XPOSED))
             return@launch
         }
-        state.emit(State.Loaded(number))
+        if (phoneCount <= 0) {
+            state.emit(State.Error(ErrorType.NO_SIM))
+            return@launch
+        }
+        val phoneId = selectedPhoneId.value.coerceIn(0, phoneCount - 1)
+        selectedPhoneId.emit(phoneId)
+        val number = try {
+            serviceRepository.runWithService {
+                it.getLine1Number(phoneId)
+            }
+        } catch (e: Exception) {
+            null
+        } ?: run {
+            state.emit(State.Error(ErrorType.NO_XPOSED))
+            return@launch
+        }
+        state.emit(State.Loaded(number, phoneId, phoneCount))
     }
 
     private fun save(number: String) = viewModelScope.launch {
         state.emit(State.Loading(LoadType.SAVING))
+        val phoneId = selectedPhoneId.value
         val result = try {
             serviceRepository.runWithService {
-                it.setLine1Number(number, null)
+                it.setLine1Number(phoneId, number, null)
             }
         } catch (e: Exception) {
             null

@@ -1,8 +1,8 @@
-package com.kieronquinn.app.simnumbersetter
+package app.arifnurrohim.simsetter
 
 import android.content.Intent
-import com.kieronquinn.app.simnumbersetter.service.PhoneNumberSetterService
-import com.kieronquinn.app.simnumbersetter.utils.extensions.checkSecurity
+import app.arifnurrohim.simsetter.service.PhoneNumberSetterService
+import app.arifnurrohim.simsetter.utils.extensions.checkSecurity
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedHelpers

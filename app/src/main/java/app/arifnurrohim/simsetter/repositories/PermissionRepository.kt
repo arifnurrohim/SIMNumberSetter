@@ -1,9 +1,9 @@
-package com.kieronquinn.app.simnumbersetter.repositories
+package app.arifnurrohim.simsetter.repositories
 
 import android.content.Context
 import android.content.pm.PackageManager
-import com.kieronquinn.app.simnumbersetter.BuildConfig
-import com.kieronquinn.app.simnumbersetter.repositories.PermissionRepository.Companion.PERMISSION_DUMP
+import app.arifnurrohim.simsetter.BuildConfig
+import app.arifnurrohim.simsetter.repositories.PermissionRepository.Companion.PERMISSION_DUMP
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

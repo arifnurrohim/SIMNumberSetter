@@ -1,4 +1,4 @@
-package com.kieronquinn.app.simnumbersetter.utils.extensions
+package app.arifnurrohim.simsetter.utils.extensions
 
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull

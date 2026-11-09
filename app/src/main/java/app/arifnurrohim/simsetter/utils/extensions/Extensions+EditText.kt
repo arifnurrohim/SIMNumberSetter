@@ -1,4 +1,4 @@
-package com.kieronquinn.app.simnumbersetter.utils.extensions
+package app.arifnurrohim.simsetter.utils.extensions
 
 import android.text.Editable
 import android.text.TextWatcher

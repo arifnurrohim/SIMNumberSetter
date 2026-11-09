@@ -1,13 +1,13 @@
-package com.kieronquinn.app.simnumbersetter.repositories
+package app.arifnurrohim.simsetter.repositories
 
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import com.kieronquinn.app.simnumbersetter.IPhoneNumberSetter
-import com.kieronquinn.app.simnumbersetter.utils.extensions.applySecurity
-import com.kieronquinn.app.simnumbersetter.utils.extensions.suspendCoroutineWithTimeout
+import app.arifnurrohim.simsetter.IPhoneNumberSetter
+import app.arifnurrohim.simsetter.utils.extensions.applySecurity
+import app.arifnurrohim.simsetter.utils.extensions.suspendCoroutineWithTimeout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex

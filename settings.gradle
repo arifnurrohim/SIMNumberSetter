@@ -11,9 +11,9 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        jcenter()
+        maven { url 'https://api.xposed.info/' }
     }
 }
-rootProject.name = "SIM Number Setter"
+rootProject.name = "SIM Setter"
 include ':app'
 include ':systemstubs'
