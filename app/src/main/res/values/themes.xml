@@ -1,11 +1,39 @@
 <resources>
-    <style name="Theme.PhoneNumberSetter" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:colorPrimary">@color/primary</item>
-        <item name="android:colorPrimaryDark">@color/primary_dark</item>
-        <item name="android:colorAccent">@color/accent</item>
+    <style name="Theme.PhoneNumberSetter" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Framework colors -->
+        <item name="android:colorPrimary">@color/ctp_lavender</item>
+        <item name="android:colorPrimaryDark">@color/ctp_crust</item>
+        <item name="android:colorAccent">@color/ctp_lavender</item>
+        <item name="android:colorBackground">@color/ctp_base</item>
+        <item name="android:windowBackground">@color/ctp_base</item>
+        <item name="android:colorBackgroundFloating">@color/ctp_mantle</item>
+        <item name="android:textColorPrimary">@color/ctp_text</item>
+        <item name="android:textColorSecondary">@color/ctp_subtext1</item>
+        <item name="android:textColorHint">@color/ctp_overlay1</item>
+        <item name="android:textColorLink">@color/ctp_lavender</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">@bool/light_status_nav</item>
-        <item name="android:windowLightNavigationBar">@bool/light_status_nav</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:forceDarkAllowed">false</item>
+
+        <!-- Material 3 colors -->
+        <item name="colorPrimary">@color/ctp_lavender</item>
+        <item name="colorOnPrimary">@color/ctp_crust</item>
+        <item name="colorPrimaryContainer">@color/ctp_surface1</item>
+        <item name="colorOnPrimaryContainer">@color/ctp_lavender</item>
+        <item name="colorSecondary">@color/ctp_mauve</item>
+        <item name="colorOnSecondary">@color/ctp_crust</item>
+        <item name="colorSecondaryContainer">@color/ctp_surface1</item>
+        <item name="colorOnSecondaryContainer">@color/ctp_mauve</item>
+        <item name="colorTertiary">@color/ctp_sky</item>
+        <item name="colorOnTertiary">@color/ctp_crust</item>
+        <item name="colorSurface">@color/ctp_base</item>
+        <item name="colorOnSurface">@color/ctp_text</item>
+        <item name="colorSurfaceVariant">@color/ctp_surface0</item>
+        <item name="colorOnSurfaceVariant">@color/ctp_subtext1</item>
+        <item name="colorOutline">@color/ctp_overlay0</item>
+        <item name="colorError">@color/ctp_red</item>
+        <item name="colorOnError">@color/ctp_crust</item>
     </style>
 </resources>

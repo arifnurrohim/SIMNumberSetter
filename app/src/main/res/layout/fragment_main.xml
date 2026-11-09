@@ -13,10 +13,12 @@
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/ctp_base"
             android:minHeight="?android:actionBarSize"
             app:title="@string/app_name"
             app:titleCentered="true"
-            app:titleTextAppearance="@style/TextAppearance.AppCompat.Large.SNS" />
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Large.SNS"
+            app:titleTextColor="@color/ctp_lavender" />
 
         <FrameLayout
             android:layout_width="match_parent"

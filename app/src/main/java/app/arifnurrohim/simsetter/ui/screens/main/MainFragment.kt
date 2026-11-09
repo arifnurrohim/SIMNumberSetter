@@ -16,9 +16,6 @@ import app.arifnurrohim.simsetter.ui.screens.main.MainViewModel.*
 import app.arifnurrohim.simsetter.utils.extensions.hideIme
 import app.arifnurrohim.simsetter.utils.extensions.onChanged
 import app.arifnurrohim.simsetter.utils.extensions.onClicked
-import com.kieronquinn.monetcompat.app.MonetFragment
-import com.kieronquinn.monetcompat.core.MonetCompat
-import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.NullPointerException
@@ -30,9 +27,6 @@ class MainFragment: Fragment() {
         ?: throw NullPointerException("Unable to access binding before onViewCreated or after onDestroyView")
 
     private val viewModel by viewModel<MainViewModel>()
-    private val monet by lazy {
-        MonetCompat.getInstance()
-    }
 
     private val bottomPadding by lazy {
         resources.getDimension(R.dimen.margin_16).toInt()
@@ -52,7 +46,6 @@ class MainFragment: Fragment() {
         setupInsets()
         setupState()
         setupToolbar()
-        setupMonet()
         setupSaveButton()
         setupCloseButton()
         setupInput()
@@ -71,22 +64,6 @@ class MainFragment: Fragment() {
             ).bottom
             view.updatePadding(bottom = bottomPadding + bottomInset)
             insets
-        }
-    }
-
-    private fun setupMonet() = with(binding) {
-        includeMainLoading.mainLoadingProgress.applyMonet()
-        includeMainError.mainErrorClose.applyMonet()
-        val background = monet.getBackgroundColorSecondary(requireContext())
-            ?: monet.getPrimaryColor(requireContext())
-        with(includeMainLoaded.includeMainLoadedCardInfo){
-            root.setCardBackgroundColor(background)
-        }
-        with(includeMainLoaded.includeMainLoadedCardEdit) {
-            root.setCardBackgroundColor(background)
-            mainLoadedCardEditInput.applyMonet()
-            mainLoadedCardEditEdit.applyMonet()
-            mainLoadedCardEditInputSave.applyMonet()
         }
     }
 

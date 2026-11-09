@@ -21,7 +21,7 @@
         android:gravity="center"
         android:text="@string/main_error_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.SNS"
-        android:textColor="?android:textColorPrimary" />
+        android:textColor="@color/ctp_red" />
 
     <TextView
         android:id="@+id/main_error_content"
@@ -30,7 +30,7 @@
         android:layout_marginTop="@dimen/margin_8"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Small.SNS"
-        android:textColor="?android:textColorPrimary"
+        android:textColor="@color/ctp_subtext1"
         tools:text="Error Content" />
 
     <com.google.android.material.button.MaterialButton
@@ -38,6 +38,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_16"
-        android:text="@string/main_error_close"/>
+        android:text="@string/main_error_close"
+        android:textColor="@color/ctp_crust"
+        app:backgroundTint="@color/ctp_lavender"
+        app:cornerRadius="@dimen/margin_16"
+        app:rippleColor="@color/ctp_surface2" />
 
 </LinearLayout>

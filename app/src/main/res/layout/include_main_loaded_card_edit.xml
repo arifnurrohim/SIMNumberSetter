@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/ctp_surface0"
     app:cardCornerRadius="@dimen/margin_16"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/ctp_lavender_20"
+    app:strokeWidth="1dp"
     style="@style/Widget.Material3.CardView.Filled">
 
     <LinearLayout
@@ -17,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="@string/main_loaded_card_edit_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large.SNS"
-            android:textColor="?android:textColorPrimary" />
+            android:textColor="@color/ctp_lavender" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/main_loaded_card_edit_sim_input"
@@ -25,14 +29,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
-            android:hint="@string/main_loaded_card_edit_sim_hint">
+            android:hint="@string/main_loaded_card_edit_sim_hint"
+            app:boxBackgroundColor="@color/ctp_mantle"
+            app:boxStrokeColor="@color/ctp_lavender"
+            app:hintTextColor="@color/ctp_lavender">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/main_loaded_card_edit_sim"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/google_sans_text_medium"
-                android:inputType="none" />
+                android:inputType="none"
+                android:textColor="@color/ctp_text"
+                android:textColorHint="@color/ctp_overlay1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,7 +52,7 @@
             android:layout_marginTop="@dimen/margin_8"
             android:text="@string/main_loaded_card_edit_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Small.SNS"
-            android:textColor="?android:textColorPrimary" />
+            android:textColor="@color/ctp_subtext1" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/main_loaded_card_edit_input"
@@ -51,32 +60,42 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
             android:hint="@string/main_loaded_card_edit_input_hint"
-            app:counterMaxLength="20"
-            app:counterEnabled="true"
-            app:counterTextAppearance="@style/TextAppearance.AppCompat.Small.SNS"
+            app:boxBackgroundColor="@color/ctp_mantle"
+            app:boxBackgroundMode="outline"
             app:boxCornerRadiusBottomEnd="@dimen/margin_16"
             app:boxCornerRadiusBottomStart="@dimen/margin_16"
             app:boxCornerRadiusTopEnd="@dimen/margin_16"
-            app:boxCornerRadiusTopStart="@dimen/margin_16">
+            app:boxCornerRadiusTopStart="@dimen/margin_16"
+            app:boxStrokeColor="@color/ctp_lavender"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:counterTextAppearance="@style/TextAppearance.AppCompat.Small.SNS"
+            app:hintTextColor="@color/ctp_lavender">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/main_loaded_card_edit_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/google_sans_text_medium"
                 android:digits="0123456789+"
+                android:fontFamily="@font/google_sans_text_medium"
+                android:inputType="number|phone"
                 android:maxLength="20"
-                android:inputType="number|phone" />
+                android:textColor="@color/ctp_text"
+                android:textColorHint="@color/ctp_overlay1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/main_loaded_card_edit_input_save"
-            style="@style/ThemeOverlay.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginTop="@dimen/margin_16"
-            android:text="@string/main_loaded_card_edit_input_save" />
+            android:text="@string/main_loaded_card_edit_input_save"
+            android:textColor="@color/ctp_crust"
+            app:backgroundTint="@color/ctp_lavender"
+            app:cornerRadius="@dimen/margin_16"
+            app:rippleColor="@color/ctp_surface2" />
 
     </LinearLayout>
 

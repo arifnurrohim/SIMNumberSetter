@@ -40,7 +40,12 @@ the SIM or network issues.
 
 ### Download
 
-[Download from releases page](https://github.com/KieronQuinn/SIMNumberSetter/releases)
+[Download from releases page](https://github.com/arifnurrohim/SIMNumberSetter/releases)
+
+## Credits
+
+- Original SIM Number Setter by [Kieron Quinn](https://github.com/KieronQuinn/SIMNumberSetter)
+- UI theme: [Catppuccin](https://catppuccin.com/palette/) Mocha, Lavender accent
 
 ## Building and releasing
 

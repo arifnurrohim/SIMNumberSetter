@@ -1,25 +1,16 @@
 package app.arifnurrohim.simsetter.ui.activities
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
 import app.arifnurrohim.simsetter.R
-import com.kieronquinn.monetcompat.app.MonetCompatActivity
-import com.kieronquinn.monetcompat.core.MonetCompat
 
-class MainActivity : MonetCompatActivity() {
-
-    override val applyBackgroundColorToMenu = true
-    override val applyBackgroundColorToWindow = true
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MonetCompat.enablePaletteCompat()
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        lifecycleScope.launchWhenCreated {
-            monet.awaitMonetReady()
-            setContentView(R.layout.activity_main)
-        }
+        setContentView(R.layout.activity_main)
     }
 
 }

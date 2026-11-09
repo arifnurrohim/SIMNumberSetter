@@ -13,6 +13,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:indeterminate="true"
+        app:indicatorColor="@color/ctp_lavender"
+        app:trackColor="@color/ctp_surface1"
         app:trackCornerRadius="4dp"
         app:trackThickness="8dp" />
 
@@ -23,7 +25,7 @@
         android:layout_marginTop="@dimen/margin_16"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.SNS"
-        android:textColor="?android:textColorPrimary"
+        android:textColor="@color/ctp_subtext1"
         tools:text="Loading..." />
 
 </LinearLayout>

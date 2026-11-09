@@ -5,6 +5,7 @@
     <string name="main_error_close">Close</string>
     <string name="main_loaded_card_info_title">About</string>
     <string name="main_loaded_card_info_content">SIM Number Setter writes a given phone number to your SIM card\'s \"subscriber number\" memory. This is the number Android reads and uses in a few places throughout the system, including Settings and Messages. It is also provided to some third party apps, if they have sufficient permissions.\n\n<b>Changing the SIM number is semi-permanent: the number change will survive reboots, uninstalling this app, even switching the SIM to a different device, but can be changed again at any time using this app.</b>\n\nSIM Number Setter does NOT:\n- Change your actual phone number, no matter what you enter.\n- Unblock a network blocked SIM.\n- Give you free data or calls.\n- Change your IMEI.\n\n<b>SIM Number Setter uses the built-in Android methods to write data to the SIM. The app nor the developer are not responsible for issues with the process, including any damage to the SIM or network issues.</b></string>
+    <string name="main_loaded_card_info_credit">Theme: Catppuccin Mocha · Lavender\nhttps://catppuccin.com/palette/</string>
     <string name="main_loaded_card_edit_title">Edit</string>
     <string name="main_loaded_card_edit_sim_hint">SIM</string>
     <string name="main_loaded_card_edit_sim_item">SIM %1$d</string>

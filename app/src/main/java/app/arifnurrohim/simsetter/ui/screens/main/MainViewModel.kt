@@ -57,8 +57,8 @@ class MainViewModelImpl(
 ) : MainViewModel() {
 
     companion object {
-        private const val URL_GITHUB = "https://github.com/KieronQuinn/SIMNumberSetter"
-        private const val URL_DONATE = "https://kieronquinn.co.uk/redirect/SNS/donate"
+        private const val URL_GITHUB = "https://github.com/arifnurrohim/SIMNumberSetter"
+        private const val URL_DONATE = "https://ko-fi.com/arifnurrohim"
     }
 
     private val customNumber = MutableStateFlow<String?>(null)
