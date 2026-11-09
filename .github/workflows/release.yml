@@ -75,19 +75,35 @@ jobs:
           sha256sum "$ASSET" > "$ASSET.sha256"
           echo "ASSET=$ASSET" >> "$GITHUB_ENV"
 
+      - name: Extract release notes
+        run: |
+          NOTES="$RUNNER_TEMP/release-notes.md"
+          if [ -f CHANGELOG.md ]; then
+            awk -v version="$VERSION_NAME" '
+              $0 ~ "^## \\[" version "\\]" { capture = 1; next }
+              capture && /^## \[/ { exit }
+              capture { print }
+            ' CHANGELOG.md > "$NOTES"
+          fi
+          if [ ! -s "$NOTES" ]; then
+            echo "Release notes for $VERSION_NAME." > "$NOTES"
+          fi
+          cat "$NOTES"
+
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.ref_name }}
         run: |
+          NOTES="$RUNNER_TEMP/release-notes.md"
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release edit "$TAG" --title "SIM Setter ${VERSION_NAME}"
+            gh release edit "$TAG" --title "SIM Setter ${VERSION_NAME}" --notes-file "$NOTES"
             gh release upload "$TAG" "$ASSET" "$ASSET.sha256" --clobber
           else
             gh release create "$TAG" \
               "$ASSET#SIM Setter ${VERSION_NAME} APK" \
               "$ASSET.sha256#SHA-256 checksum" \
               --title "SIM Setter ${VERSION_NAME}" \
-              --generate-notes \
+              --notes-file "$NOTES" \
               --verify-tag
           fi
